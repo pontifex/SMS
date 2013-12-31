@@ -1,12 +1,11 @@
 ZF2 wrapper for various SMS providers.
 
 TODO:
-1) Add more unit tests.
-2) Implement next adapters. (If you find this repository useful and would like to contribute new adapters, you are welcome!)
+1) Implement next adapters. (If you find this repository useful and would like to contribute new adapters, you are welcome!)
 
 To add new SMS adapter implement \SMS\Model\Adapter\AdapterInterface (1 method - send()).
 
-Tested on ZF 2.1.4 and PHP 5.3.2
+Tested on ZF 2.2.1 and PHP 5.3.3
 
 How to use example:
 
@@ -26,14 +25,15 @@ How to use example:
 ```php
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use SMS\Model\SMS;
-use SMS\Model\Struct\CountryPrefixConstantsInterface;
-use SMS\Model\Struct\Message;
-use SMS\Model\Struct\NumberTo;
-use SMS\Model\Struct\SMSCollection;
+use Zend\Mvc\Controller\AbstractActionController,
+    Zend\View\Model\ViewModel,
+    SMS\Model\SMS,
+    SMS\Model\Struct;
 
+/**
+ * Class IndexController
+ * @package SMS\Controller
+ */
 class IndexController extends AbstractActionController implements CountryPrefixConstantsInterface
 {
     /**
@@ -41,15 +41,15 @@ class IndexController extends AbstractActionController implements CountryPrefixC
      */
     public function indexAction()
     {
-        $item1 = new \SMS\Model\Struct\SMS();
-        $item1->setTo(new NumberTo(self::POLAND, '123123123'));
-        $item1->setMessage(new Message('Hello world #1!'));
+        $item1 = new Struct\SMS();
+        $item1->setTo(new Struct\NumberTo(self::POLAND, '123123123'));
+        $item1->setMessage(new Struct\Message('Hello world #1!'));
 
-        $item2 = new \SMS\Model\Struct\SMS();
-        $item2->setTo(new NumberTo(self::POLAND, '321321321'));
-        $item2->setMessage(new Message('Hello world #2!'));
+        $item2 = new Struct\SMS();
+        $item2->setTo(new Struct\NumberTo(self::GERMANY, '321321321'));
+        $item2->setMessage(new Struct\Message('Hello world #2!'));
 
-        $coll = new SMSCollection();
+        $coll = new Struct\SMSCollection();
         $coll->attach($item1);
         $coll->attach($item2);
 

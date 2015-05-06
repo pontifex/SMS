@@ -3,19 +3,20 @@
     "description": "ZF2 wrapper for various SMS providers.",
     "type": "zf-module",
     "license": "BSD-3-Clause",
-    "version":"0.1.0",
     "keywords": [
         "zf2",
         "module",
         "SMS"
     ],
     "homepage": "https://github.com/pontifex/SMS",
-    "author":
+    "authors": [
         {
             "name": "Lucas Wawrzyniak",
             "email": "lucas.wawrzyniak@gmail.com",
-			"homepage": "https://github.com/pontifex/SMS"
-        },
+			"homepage": "https://github.com/pontifex/SMS",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*"

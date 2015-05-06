@@ -1,5 +1,7 @@
 ZF2 wrapper for various SMS providers.
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/5d7eb22c-6e1e-47ac-ade2-5857899c4b3d/big.png)](https://insight.sensiolabs.com/projects/5d7eb22c-6e1e-47ac-ade2-5857899c4b3d)
+
 TODO:
 1) Implement next adapters. (If you find this repository useful and would like to contribute new adapters, you are welcome!)
 

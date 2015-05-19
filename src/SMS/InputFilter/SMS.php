@@ -16,20 +16,13 @@ use Zend\InputFilter\InputFilter;
 class SMS extends SMSAPI
 {
     /**
-     * @return InputFilter
+     *
      */
-    public function getInputFilter()
+    protected function prepareInputFilter()
     {
-        if (!$this->inputFilter) {
-            $inputFilter = new InputFilter();
-            $this->inputFilter = $inputFilter;
+        parent::prepareInputFilter();
 
-            $this->addFromFilter();
-            $this->addToFilter();
-            $this->addMessageFilter();
-        }
-
-        return $this->inputFilter;
+        $this->addFromFilter();
     }
 
     /**
@@ -37,19 +30,6 @@ class SMS extends SMSAPI
      */
     protected function addFromFilter()
     {
-        $this->inputFilter->add($this->getFactory()->createInput(array(
-            'name'     => 'from',
-            'required' => true,
-            'filters'  => array(
-                array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
-                array('name' => 'Digits'),
-            ),
-            'validators' => array(
-                array(
-                    'name'    => 'Digits',
-                ),
-            ),
-        )));
+        $this->addDigitsFilter('from');
     }
 }

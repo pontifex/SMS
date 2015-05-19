@@ -80,7 +80,7 @@ public function onBootstrap(\Zend\Mvc\MvcEvent $e)
         'SMS\Model\Adapter\AdapterAbstract',
         'SMS.postSend',
         function(\Zend\EventManager\Event $event) {
-            echo 'SMS to number: ' . $event->getParam('numberTo')->getNumber() . ' is sent!<br />';
+            echo 'SMS to number: ' . $event->getParam('to')->getNumber() . ' is sent!<br />';
         }
     );
 }

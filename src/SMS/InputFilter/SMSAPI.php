@@ -68,11 +68,7 @@ class SMSAPI implements InputFilterAwareInterface
     public function getInputFilter()
     {
         if (!$this->inputFilter) {
-            $inputFilter = new InputFilter();
-            $this->setInputFilter($inputFilter);
-
-            $this->addToFilter();
-            $this->addMessageFilter();
+            $this->prepareInputFilter();
         }
 
         return $this->inputFilter;
@@ -81,10 +77,30 @@ class SMSAPI implements InputFilterAwareInterface
     /**
      *
      */
+    protected function prepareInputFilter()
+    {
+        $inputFilter = new InputFilter();
+        $this->setInputFilter($inputFilter);
+
+        $this->addToFilter();
+        $this->addMessageFilter();
+    }
+
+    /**
+     *
+     */
     protected function addToFilter()
     {
+        $this->addDigitsFilter('to');
+    }
+
+    /**
+     * @param $name
+     */
+    protected function addDigitsFilter($name)
+    {
         $this->inputFilter->add($this->getFactory()->createInput(array(
-            'name'     => 'to',
+            'name'     => $name,
             'required' => true,
             'filters'  => array(
                 array('name' => 'StripTags'),

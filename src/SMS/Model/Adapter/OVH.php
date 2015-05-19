@@ -95,11 +95,11 @@ class OVH extends AdapterAbstract
 
     /**
      * @param $response
+     * eg. {"status":100,"creditLeft":"1007","SmsIds":["10867690"]}
      * @return \stdClass
      */
     protected function parseResponse($response)
     {
-        // eg. {"status":100,"creditLeft":"1007","SmsIds":["10867690"]}
         return json_decode($response);
     }
 

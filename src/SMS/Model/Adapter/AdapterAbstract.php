@@ -101,13 +101,7 @@ abstract class AdapterAbstract implements AdapterInterface
      */
     public function preSend(Struct\SMS $item)
     {
-        $this->getEventManager()->trigger('SMS.preSend', null,
-            array(
-                'numberFrom' => $item->getFrom(),
-                'numberTo'   => $item->getTo(),
-                'message'    => $item->getMessage()
-            )
-        );
+        $this->getEventManager()->trigger('SMS.preSend', null, $item->toArray());
     }
 
     /**
@@ -116,14 +110,14 @@ abstract class AdapterAbstract implements AdapterInterface
      */
     public function postSend(Struct\SMS $item, Struct\Result $result)
     {
-        $this->getEventManager()->trigger('SMS.postSend', null,
+        $eventParamsArr = array_merge(
+            $item->toArray(),
             array(
-                'numberFrom' => $item->getFrom(),
-                'numberTo'   => $item->getTo(),
-                'message'    => $item->getMessage(),
-                'result'     => $result
+                'result' => $result
             )
         );
+
+        $this->getEventManager()->trigger('SMS.postSend', null, $eventParamsArr);
     }
 
     /**
@@ -132,14 +126,14 @@ abstract class AdapterAbstract implements AdapterInterface
      */
     public function errorOnSend(Struct\SMS $item, Exception\AdapterInternalError $exception)
     {
-        $this->getEventManager()->trigger('SMS.errorOnSend', null,
+        $eventParamsArr = array_merge(
+            $item->toArray(),
             array(
-                'numberFrom' => $item->getFrom(),
-                'numberTo'   => $item->getTo(),
-                'message'    => $item->getMessage(),
-                'exception'  => $exception
+                'exception' => $exception
             )
         );
+
+        $this->getEventManager()->trigger('SMS.errorOnSend', null, $eventParamsArr);
     }
 
     /**

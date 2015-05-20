@@ -19,7 +19,7 @@ use SMS\Exception,
  * Class SMSAPI
  * @package SMS\Model\Adapter
  */
-class SMSAPI extends AdapterAbstract
+class SMSAPI extends AdapterWebAbstract
 {
     const SMS_API_ERROR_RESPONSE = 'ERROR';
     const SMS_API_AUTH_ISSUE = 101;
@@ -32,20 +32,6 @@ class SMSAPI extends AdapterAbstract
         parent::__construct($serviceLocator);
 
         $this->setInputFilter(new InputFilter\SMSAPI());
-    }
-
-    /**
-     * @param Struct\SMS $item
-     * @return Exception\AdapterInternalError
-     */
-    public function send(Struct\SMS $item)
-    {
-        $response = $this->sendRequest($item);
-        $parsedResponse = $this->parseResponse($response);
-
-        $this->checkParsedResponse($parsedResponse, $response);
-
-        return $this->makeResult($parsedResponse);
     }
 
     /**

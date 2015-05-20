@@ -19,7 +19,7 @@ use SMS\Exception,
  * Class OVH
  * @package SMS\Model\Adapter
  */
-class OVH extends AdapterAbstract
+class OVH extends AdapterWebAbstract
 {
     const OVH_SUCCESS_CODE = 100;
 
@@ -31,21 +31,6 @@ class OVH extends AdapterAbstract
         parent::__construct($serviceLocator);
 
         $this->setInputFilter(new InputFilter\SMS());
-    }
-
-    /**
-     * @param Struct\SMS $item
-     * @return Struct\Result
-     * @throws Exception\AdapterInternalError
-     */
-    public function send(Struct\SMS $item)
-    {
-        $response = $this->sendRequest($item);
-        $parsedResponse = $this->parseResponse($response);
-
-        $this->checkParsedResponse($parsedResponse, $response);
-
-        return $this->makeResult($parsedResponse);
     }
 
     /**

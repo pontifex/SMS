@@ -133,12 +133,12 @@ class SMSAPI extends AdapterWebAbstract
     }
 
     /**
-     * @param array $parsedResponse
+     * @param $parsedResponse
      * @return Struct\Result
      * @throws Exception\AdapterInternalError
      * @throws Exception\AccessUnauthorized
      */
-    protected function makeResult(array $parsedResponse)
+    protected function makeResult($parsedResponse)
     {
         return new Struct\Result(
             array($parsedResponse[1]),

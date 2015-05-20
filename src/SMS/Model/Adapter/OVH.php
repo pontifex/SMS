@@ -131,10 +131,10 @@ class OVH extends AdapterWebAbstract
     }
 
     /**
-     * @param \stdClass $parsedResponse
+     * @param $parsedResponse
      * @return Struct\Result
      */
-    protected function makeResult(\stdClass $parsedResponse)
+    protected function makeResult($parsedResponse)
     {
         return new Struct\Result(
             $parsedResponse->SmsIds,

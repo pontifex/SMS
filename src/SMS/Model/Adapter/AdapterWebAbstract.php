@@ -54,10 +54,10 @@ abstract class AdapterWebAbstract extends AdapterAbstract
     abstract protected function checkParsedResponse($parsedResponse, $response);
 
     /**
-     * @param array $parsedResponse
+     * @param $parsedResponse
      * @return Struct\Result
      * @throws Exception\AdapterInternalError
      * @throws Exception\AccessUnauthorized
      */
-    abstract protected function makeResult(array $parsedResponse);
+    abstract protected function makeResult($parsedResponse);
 }

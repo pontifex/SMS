@@ -89,11 +89,11 @@ class OVH extends AdapterWebAbstract
     }
 
     /**
-     * @param \stdClass $parsedResponse
+     * @param $parsedResponse
      * @param $response
      * @throws Exception\AdapterInternalError
      */
-    protected function checkParsedResponse(\stdClass $parsedResponse, $response)
+    protected function checkParsedResponse($parsedResponse, $response)
     {
         $this->checkParsedResponseStructure($parsedResponse, $response);
         $this->checkParsedResponseContent($parsedResponse, $response);

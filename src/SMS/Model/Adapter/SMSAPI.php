@@ -90,10 +90,10 @@ class SMSAPI extends AdapterWebAbstract
     }
 
     /**
-     * @param array $parsedResponse
+     * @param $parsedResponse
      * @param $response
      */
-    protected function checkParsedResponse(array $parsedResponse, $response)
+    protected function checkParsedResponse($parsedResponse, $response)
     {
         $this->checkParsedResponseStructure($parsedResponse, $response);
         $this->checkParsedResponseContent($parsedResponse, $response);

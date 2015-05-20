@@ -48,10 +48,10 @@ abstract class AdapterWebAbstract extends AdapterAbstract
     abstract protected function parseResponse($response);
 
     /**
-     * @param array $parsedResponse
+     * @param $parsedResponse
      * @param $response
      */
-    abstract protected function checkParsedResponse(array $parsedResponse, $response);
+    abstract protected function checkParsedResponse($parsedResponse, $response);
 
     /**
      * @param array $parsedResponse

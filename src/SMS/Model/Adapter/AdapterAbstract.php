@@ -110,14 +110,10 @@ abstract class AdapterAbstract implements AdapterInterface
      */
     public function postSend(Struct\SMS $item, Struct\Result $result)
     {
-        $eventParamsArr = array_merge(
-            $item->toArray(),
-            array(
-                'result' => $result
-            )
+        $otherParamsArr = array(
+            'result' => $result
         );
-
-        $this->getEventManager()->trigger('SMS.postSend', null, $eventParamsArr);
+        $this->getEventManager()->trigger('SMS.postSend', null, $this->prepareEventParams($item, $otherParamsArr));
     }
 
     /**
@@ -126,14 +122,23 @@ abstract class AdapterAbstract implements AdapterInterface
      */
     public function errorOnSend(Struct\SMS $item, Exception\AdapterInternalError $exception)
     {
-        $eventParamsArr = array_merge(
-            $item->toArray(),
-            array(
-                'exception' => $exception
-            )
+        $otherParamsArr = array(
+            'exception' => $exception
         );
+        $this->getEventManager()->trigger('SMS.errorOnSend', null, $this->prepareEventParams($item, $otherParamsArr));
+    }
 
-        $this->getEventManager()->trigger('SMS.errorOnSend', null, $eventParamsArr);
+    /**
+     * @param $item
+     * @param array $otherParamsArr
+     * @return array
+     */
+    protected function prepareEventParams($item, array $otherParamsArr = array())
+    {
+        return array_merge(
+            $item->toArray(),
+            $otherParamsArr
+        );
     }
 
     /**
